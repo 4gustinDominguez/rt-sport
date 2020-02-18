@@ -1,0 +1,7 @@
+#FIREBASE
+FIREBASE_apikey=''
+FIREBASE_authDomain = ''
+FIREBASE_databaseURL= ''
+FIREBASE_projectId = ''
+FIREBASE_storageBucket = ''
+FIREBASE_messagingSenderId = ''
