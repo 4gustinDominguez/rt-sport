@@ -1,4 +1,6 @@
 import * as React from 'react';
+import styled from 'styled-components';
+
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import * as routes from '../constants/routes';
 import { firebase } from '../firebase';
@@ -11,6 +13,28 @@ import { SignIn } from '../pages/SignIn';
 import { SignUp } from '../pages/SignUp';
 import { Navigation } from './Navigation';
 
+const Container = styled.div`
+  background-color: #f5ca3c;
+  display: -webkit-flex;
+  display: flex;
+  width: 960px;
+  margin: 0 auto;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-align-items: flex-start;
+  align-items: flex-start;
+`;
+
+const Footer = styled.div`
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+`;
+
 const AppComponent = (props: any) => {
   const [authUser, setAuthUser] = React.useState(null);
 
@@ -22,7 +46,7 @@ const AppComponent = (props: any) => {
 
   return (
     <BrowserRouter>
-      <div>
+      <Container>
         <Navigation />
         <hr />
         <Switch>
@@ -33,7 +57,9 @@ const AppComponent = (props: any) => {
           <Route exact={true} path={routes.HOME} component={Home} />
           <Route exact={true} path={routes.ACCOUNT} component={Account} />
         </Switch>
-      </div>
+
+        <Footer>Footer</Footer>
+      </Container>
     </BrowserRouter>
   );
 };

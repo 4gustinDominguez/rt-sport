@@ -1,8 +1,21 @@
-import * as React from "react";
-import { Link } from "react-router-dom";
-import * as routes from "../constants/routes";
-import { AuthUserContext } from "../firebase/AuthUserContext";
-import { SignOutButton } from "./SignOutButton";
+import * as React from 'react';
+import { Link } from 'react-router-dom';
+import * as routes from '../constants/routes';
+import { AuthUserContext } from '../firebase/AuthUserContext';
+import { SignOutButton } from './SignOutButton';
+import styled from 'styled-components';
+
+const Navbar = styled.div`
+  background-color: #46acc2;
+  display: flex;
+  padding: 16px;
+  font-family: sans-serif;
+`;
+
+const NavbarItems = styled.div`
+  display: flex;
+  padding-right: 8px;
+`;
 
 export const Navigation = () => (
   <AuthUserContext.Consumer>
@@ -11,29 +24,29 @@ export const Navigation = () => (
 );
 
 const NavigationAuth = () => (
-  <ul>
-    <li>
+  <Navbar>
+    <NavbarItems>
       <Link to={routes.LANDING}>Landing</Link>
-    </li>
-    <li>
+    </NavbarItems>
+    <NavbarItems>
       <Link to={routes.HOME}>Home</Link>
-    </li>
-    <li>
+    </NavbarItems>
+    <NavbarItems>
       <Link to={routes.ACCOUNT}>Account</Link>
-    </li>
-    <li>
+    </NavbarItems>
+    <NavbarItems>
       <SignOutButton />
-    </li>
-  </ul>
+    </NavbarItems>
+  </Navbar>
 );
 
 const NavigationNonAuth = () => (
-  <ul>
-    <li>
+  <Navbar>
+    <NavbarItems>
       <Link to={routes.LANDING}>Landing</Link>
-    </li>
-    <li>
+    </NavbarItems>
+    <NavbarItems>
       <Link to={routes.SIGN_IN}>Sign In</Link>
-    </li>
-  </ul>
+    </NavbarItems>
+  </Navbar>
 );

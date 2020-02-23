@@ -11,10 +11,6 @@ const config = {
   messagingSenderId: process.env.FIREBASE_messagingSenderId,
 };
 
-console.log('FIREBASE_apikey');
-
-console.log();
-
 if (!firebase.apps.length) {
   firebase.initializeApp(config);
 }

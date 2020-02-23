@@ -13,7 +13,12 @@ const GlobalStyle = createGlobalStyle`
   :root{
     font-size: ${({ theme: { typography } }): string => `${typography.fontSize}`};
   }
+  html{
+    height:100%;
+  }
   body{
+    display: flex;
+    min-height: 100vh;
     box-sizing: border-box;
     margin: 0;
     padding:0;
@@ -22,6 +27,7 @@ const GlobalStyle = createGlobalStyle`
     background-color: ${({ theme: { palette } }): string => palette.background};
   transition[1]};
   }
+  body::after{ content:''; display:block; height:100px; }
 `;
 
 export const ThemeStyledProvider: React.FC<ThemeStyledProviderProps> = ({ theme, children }) => {
