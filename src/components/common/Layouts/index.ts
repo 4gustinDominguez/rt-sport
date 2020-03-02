@@ -1,0 +1,1 @@
+export { Main, Section, Container } from './layout-styled';

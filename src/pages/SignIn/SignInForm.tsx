@@ -1,6 +1,8 @@
-import * as React from "react";
-import * as routes from "../../constants/routes";
-import { auth } from "../../firebase";
+import * as React from 'react';
+import * as routes from '../../constants/routes';
+import * as auth from '../../firebase/auth';
+
+import { InputText, Button } from "@components";
 
 interface InterfaceProps {
   email?: string;
@@ -15,14 +17,11 @@ interface InterfaceState {
   password: string;
 }
 
-export class SignInForm extends React.Component<
-  InterfaceProps,
-  InterfaceState
-> {
+export class SignInForm extends React.Component<InterfaceProps, InterfaceState> {
   private static INITIAL_STATE = {
-    email: "",
+    email: '',
     error: null,
-    password: ""
+    password: '',
   };
 
   private static propKey(propertyName: string, value: any): object {
@@ -47,7 +46,7 @@ export class SignInForm extends React.Component<
         history.push(routes.HOME);
       })
       .catch(error => {
-        this.setState(SignInForm.propKey("error", error));
+        this.setState(SignInForm.propKey('error', error));
       });
 
     event.preventDefault();
@@ -56,25 +55,26 @@ export class SignInForm extends React.Component<
   public render() {
     const { email, password, error } = this.state;
 
-    const isInvalid = password === "" || email === "";
+    const isInvalid = password === '' || email === '';
 
     return (
+
       <form onSubmit={event => this.onSubmit(event)}>
-        <input
+        <InputText
           value={email}
-          onChange={event => this.setStateWithEvent(event, "email")}
+          onChange={event => this.setStateWithEvent(event, 'email')}
           type="text"
           placeholder="Email Address"
         />
-        <input
+        <InputText
           value={password}
-          onChange={event => this.setStateWithEvent(event, "password")}
+          onChange={event => this.setStateWithEvent(event, 'password')}
           type="password"
           placeholder="Password"
         />
-        <button disabled={isInvalid} type="submit">
+        <Button disabled={isInvalid}>
           Sign In
-        </button>
+        </Button>
 
         {error && <p>{error.message}</p>}
       </form>

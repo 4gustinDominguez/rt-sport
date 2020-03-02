@@ -1,5 +1,5 @@
-import * as React from "react";
-import { auth } from "../../firebase";
+import * as React from 'react';
+import * as auth from '../../firebase/auth';
 
 interface InterfaceProps {
   error?: any;
@@ -14,14 +14,11 @@ interface InterfaceState {
   passwordTwo?: string;
 }
 
-export class PasswordChangeForm extends React.Component<
-  InterfaceProps,
-  InterfaceState
-> {
+export class PasswordChangeForm extends React.Component<InterfaceProps, InterfaceState> {
   private static INITIAL_STATE = {
     error: null,
-    passwordOne: "",
-    passwordTwo: ""
+    passwordOne: '',
+    passwordTwo: '',
   };
 
   private static propKey(propertyName: string, value: string): object {
@@ -42,7 +39,7 @@ export class PasswordChangeForm extends React.Component<
         this.setState(() => ({ ...PasswordChangeForm.INITIAL_STATE }));
       })
       .catch(error => {
-        this.setState(PasswordChangeForm.propKey("error", error));
+        this.setState(PasswordChangeForm.propKey('error', error));
       });
 
     event.preventDefault();
@@ -51,19 +48,19 @@ export class PasswordChangeForm extends React.Component<
   public render() {
     const { passwordOne, passwordTwo, error }: any = this.state;
 
-    const isInvalid = passwordOne !== passwordTwo || passwordOne === "";
+    const isInvalid = passwordOne !== passwordTwo || passwordOne === '';
 
     return (
       <form onSubmit={event => this.onSubmit(event)}>
         <input
           value={passwordOne}
-          onChange={event => this.setStateWithEvent(event, "passwordOne")}
+          onChange={event => this.setStateWithEvent(event, 'passwordOne')}
           type="password"
           placeholder="New Password"
         />
         <input
           value={passwordTwo}
-          onChange={event => this.setStateWithEvent(event, "passwordTwo")}
+          onChange={event => this.setStateWithEvent(event, 'passwordTwo')}
           type="password"
           placeholder="Confirm New Password"
         />
@@ -77,8 +74,6 @@ export class PasswordChangeForm extends React.Component<
   }
 
   private setStateWithEvent(event: any, columnType: string): void {
-    this.setState(
-      PasswordChangeForm.propKey(columnType, (event.target as any).value)
-    );
+    this.setState(PasswordChangeForm.propKey(columnType, (event.target as any).value));
   }
 }

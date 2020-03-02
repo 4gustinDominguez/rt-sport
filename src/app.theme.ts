@@ -9,6 +9,11 @@ export const defaultTheme = {
     text: '#525F7F',
     navigationBackground: '#EDEFF8',
     background: '#f4f9fc',
+    buttons: {
+      success: '#2196F3',
+      warning: '',
+      disabled: 'grey'
+    }
   },
   spacing: (factor: number): number => factor * 8,
   transition: ['0.2s ease-out', '0.5s ease-out'],

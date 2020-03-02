@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { firebase } from '../firebase';
+import * as firebase from 'firebase';
 import { AuthUserContext } from './AuthUserContext';
 
 interface InterfaceProps {
@@ -21,7 +21,7 @@ export const withAuthentication = (Component: any) => {
     }
 
     public componentDidMount() {
-      firebase.auth.onAuthStateChanged(authUser => {
+      firebase.auth().onAuthStateChanged(authUser => {
         authUser ? this.setState(() => ({ authUser })) : this.setState(() => ({ authUser: null }));
       });
     }
@@ -30,9 +30,11 @@ export const withAuthentication = (Component: any) => {
       const { authUser } = this.state;
 
       return (
+
         <AuthUserContext.Provider value={authUser}>
           <Component />
         </AuthUserContext.Provider>
+
       );
     }
   }

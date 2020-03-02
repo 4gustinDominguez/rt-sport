@@ -10,9 +10,13 @@ module.exports = (mode = 'development') => ({
   entry: path.join(basePath, 'src', 'index.tsx'),
   output: {
     path: path.join(basePath, 'build'),
+    publicPath: '/',
     filename: '[name].[hash].js',
   },
   resolve: {
+    alias: {
+      '@components': path.resolve(__dirname, 'src/components/')
+    },
     extensions: ['.ts', '.tsx', '.js'],
   },
   devtool: mode === 'development' ? 'inline-source-map' : 'eval-source-map',
@@ -23,6 +27,7 @@ module.exports = (mode = 'development') => ({
     compress: true,
     watchContentBase: true,
     progress: true,
+    historyApiFallback: true,
   },
   module: {
     rules: [
@@ -71,13 +76,5 @@ module.exports = (mode = 'development') => ({
       filename: 'index.html',
     }),
     new Dotenv(),
-    new webpack.DefinePlugin({
-      // 'process.env.FIREBASE_apikey': JSON.stringify(process.env.FIREBASE_apikey),
-      // FIREBASE_authDomain: JSON.stringify(process.env.FIREBASE_authDomain),
-      // FIREBASE_databaseURL: JSON.stringify(process.env.FIREBASE_databaseURL),
-      // FIREBASE_projectId: JSON.stringify(process.env.FIREBASE_apikey),
-      // FIREBASE_storageBucket: JSON.stringify(process.env.FIREBASE_apikey),
-      // FIREBASE_messagingSenderId: JSON.stringify(process.env.FIREBASE_apikey),
-    }),
   ],
 });

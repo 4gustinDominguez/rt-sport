@@ -17,17 +17,25 @@ const GlobalStyle = createGlobalStyle`
     height:100%;
   }
   body{
-    display: flex;
-    min-height: 100vh;
-    box-sizing: border-box;
     margin: 0;
-    padding:0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: ${({ theme: { typography } }): string => typography.fontFamily};
     color: ${({ theme: { palette } }): string => palette.text};
     background-color: ${({ theme: { palette } }): string => palette.background};
   transition[1]};
   }
-  body::after{ content:''; display:block; height:100px; }
+  
+  ul, nav{
+    list-style: none;
+  }
+  a{
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    opacity: 0.9;
+  }
+  
 `;
 
 export const ThemeStyledProvider: React.FC<ThemeStyledProviderProps> = ({ theme, children }) => {
